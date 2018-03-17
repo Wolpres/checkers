@@ -1,10 +1,16 @@
 #include <SFML/Graphics.hpp>
 #include <time.h>
 #include <iostream>
-//#include "Connector.hpp"
 
 using namespace std;
 using namespace sf;
+
+enum player {
+	white = 0,
+	dark = 1
+};
+
+player p1 = white, p2 = dark;
 
 int size = 56;
 Vector2f offset(28,28);
@@ -31,6 +37,7 @@ int movable_possitions[8][8] = {
 	{ 1, 0, 1, 0, 1, 0, 1, 0 },
 	{ 0, 1, 0, 1, 0, 1, 0, 1 },
 	{ 1, 0, 1, 0, 1, 0, 1, 0 }};
+
 
 void loadPosition() {
 	int k = 0;
@@ -66,8 +73,8 @@ int main() {
 	RenderWindow window(VideoMode(504, 504), "The Chess! (press SPACE)");
 
 	Texture t1, t2;
-	t1.loadFromFile("images/pawns.png");
-	t2.loadFromFile("images/board.png");
+	t1.loadFromFile("../img/pawns.png");
+	t2.loadFromFile("../img/board.png");
 
 
 	for(int i = 0 ; i < 16 ; i++)
@@ -103,9 +110,9 @@ int main() {
 /** DROP **/
 			if (e.type == Event::MouseButtonReleased) {
 				if (canMove((Mouse::getPosition().x - Vector2f(offset).x), (Mouse::getPosition().y - Vector2f(offset).y))) {
-					Vector2f tmp(Mouse::getPosition(window) - Vector2i(size/2, size/2));
+					Vector2i p = Mouse::getPosition(window) - Vector2i(size/2,size/2);
+					Vector2f tmp = Vector2f( size*(p.x/size), size*(p.y/size) ); ///< locks to position
 					f[n].setPosition(tmp);
-
 				}
 				if (canJump(Mouse::getPosition().x, Mouse::getPosition().y)) {
 					//TODO
