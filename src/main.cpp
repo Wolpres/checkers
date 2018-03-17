@@ -92,7 +92,7 @@ int main() {
 
 		Event e;
 		while (window.pollEvent(e)) {
-    	    if (e.type == Event::Closed)
+			if (e.type == Event::Closed)
 				window.close();
 		}
 
