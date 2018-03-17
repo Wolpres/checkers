@@ -121,16 +121,16 @@ int main() {
 
 /** DRAW **/
 		window.clear();
-    	window.draw(sBoard);
+		window.draw(sBoard);
 		for (int i = 0 ; i < 16 ; i++)
 			f[i].move(offset);
-    	for (int i = 0 ; i < 16 ; i++)
+		for (int i = 0 ; i < 16 ; i++)
 			window.draw(f[i]);
 		window.draw(f[n]);
 		for (int i = 0 ; i < 16 ; i++)
 			f[i].move(-offset);
- 		window.display();
+		window.display();
 	} // while (window.isOpen())
 
-    return 0;
+	return 0;
 }
